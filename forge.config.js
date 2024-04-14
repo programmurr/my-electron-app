@@ -11,12 +11,17 @@ module.exports = {
       appleIdPassword: process.env.APPLE_PASSWORD,
       teamId: process.env.APPLE_TEAM_ID,
     },
+    icon: "./images/daft.jpg",
   },
   rebuildConfig: {},
   makers: [
     {
       name: "@electron-forge/maker-squirrel",
-      config: {},
+      config: {
+        setupIcon: "./images/daft.jpg",
+        certificateFile: "./cert.pfx",
+        certificatePassword: process.env.CERTIFICATE_PASSWORD,
+      },
     },
     {
       name: "@electron-forge/maker-zip",
@@ -24,17 +29,26 @@ module.exports = {
     },
     {
       name: "@electron-forge/maker-deb",
-      config: {},
+      config: {
+        options: {
+          icon: "./images/daft.jpg",
+        },
+      },
     },
     {
       name: "@electron-forge/maker-rpm",
       config: {},
     },
     {
-      name: "@electron-forge/maker-squirrel",
+      name: "@electron-forge/maker-dmg",
       config: {
-        certificateFile: "./cert.pfx",
-        certificatePassword: process.env.CERTIFICATE_PASSWORD,
+        icon: "/path/to/icon.icns",
+      },
+    },
+    {
+      name: "@electron-forge/maker-wix",
+      config: {
+        icon: "/path/to/icon.ico",
       },
     },
   ],
